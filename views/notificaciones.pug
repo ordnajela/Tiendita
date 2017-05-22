@@ -1,0 +1,37 @@
+html
+    head
+      //- include bootstrap-css
+      include bootstrap-css
+      include custom-css
+      include tiendita-js
+      title HOME
+    body
+      div.jumbotron
+        div.container.text-center
+          h1.tiendita-h1-title-main Tiendita en línea
+          p Bienvenid@ #{usuario.nombre}
+
+      nav.navbar.navbar-inverse
+        div.container-fluid
+          div.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li
+                a(href="/home") Productos
+              li.active
+                a(href="javascript:void()") Notificaciones
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href="/carrito") Carrito
+                  span.glyphicon.glyphicon-shopping-cart
+              li
+                a(href="/perfil/" + usuario.nickname) Mi cuenta
+                  span.glyphicon.glyphicon-user
+              li
+                a(href="/logout") Cerrar sesión
+                  span.glyphicon.glyphicon-log-out
+      div.container
+        div.row
+          each notificacion in notificaciones
+            div.col-sm-12(style="cursor : pointer;" onclick="location.href='/detalle/producto/"+notificacion.idProducto+"?visto="+notificacion._id+"';")
+              div.panel.panel-default
+                div.panel-heading #{notificacion.mensaje}

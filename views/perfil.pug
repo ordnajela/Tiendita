@@ -1,0 +1,71 @@
+html
+    head
+      //- include bootstrap-css
+      include bootstrap-css
+      include custom-css
+      include tiendita-js
+      title #{usuario.nickname}
+    body
+      div.container-fluid
+        div.row.content
+          div.col-md-4.sidenav
+            div.row
+              div.col-md-12
+                div.well.well-sm
+                  div.row
+                    div.col-md-4
+                      if usuario.foto
+                        img.img-rounded.img-responsive(src="/public/images/profilepics/"+usuario.foto, alt="")
+                      else
+                        img.img-rounded.img-responsive(src="/public/images/placeholder.jpg", alt="")
+                    div.col-md-8
+                      h4 #{usuario.nombre}
+                      p.small
+                        span.glyphicon.glyphicon-map-marker
+                        |  #{usuario.direccion.ciudad},  #{usuario.direccion.estado},  #{usuario.direccion.pais}
+                      p.small
+                        span.glyphicon.glyphicon-envelope
+                        |  #{usuario.email}
+                      div.btn-group
+                        if usuario.email
+                          button.btn.tiendita-btn-black(onclick="location.href='mailto:"+usuario.email+"';") contactar
+                        else
+                          button.btn.btn-basic.disabled contactar
+              a(href="/")
+                button.btn.btn-link regresar
+              a(href="/nuevoproducto")
+                button.btn.btn-link cargar producto
+              h4 mis compras
+              //- TODO:
+              div.container
+                div.col-md-4
+                  table
+                    div.table-responsive
+                      table.table
+                        thead
+                          th Detalle
+                          th Fecha
+                          th Total
+                        tbody
+                          for transaccion in transacciones
+                            tr
+                              td
+                                a(href="/transaccion/"+transaccion._id) ver
+                              td #{transaccion.fecha}
+                              td #{transaccion.total}
+              
+            div.col-md-8
+              h4 
+                small PRODUCTOS   
+              div.container
+                div.row
+                  each producto in productos
+                    div.col-sm-4.col-xs-12
+                      div.panel.panel-default
+                        div.panel-heading #{producto.nombre}
+                        div.panel-body
+                          if producto.foto
+                            img.img-responsive(src="/public/images/products/"+producto.foto, style="width:336px;height:280px;" alt="Image")
+                          else
+                            img.img-responsive(src="/public/images/placeholder.jpg", style="width:336px;height:280px;" alt="Image")
+                        div.panel-footer #{producto.descripcion}

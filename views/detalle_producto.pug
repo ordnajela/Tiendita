@@ -1,0 +1,39 @@
+html
+    head
+      //- include bootstrap-css
+      include bootstrap-css
+      include custom-css
+      include tiendita-js
+      title #{producto.nombre}
+    body
+      div.container-fluid
+        div.row.content
+          div.col-md-4.sidenav
+            div.row
+              div.col-md-12
+                div.well.well-sm
+                  div.row
+                    div.col-md-4
+                      if producto.foto
+                        img.img-rounded.img-responsive(src="/public/images/products/"+producto.foto, alt="")
+                      else
+                        img.img-rounded.img-responsive(src="/public/images/duck.jpg", alt="")
+                    div.col-md-8
+                      h4 #{producto.nombre}
+                      p
+                        span.glyphicon.glyphicon-tag
+                        | 
+                        kbd
+                          | precio : #{producto.precio}
+                      if producto.idPropietario != usuarioId
+                        form(action="/agregarcarrito", method="POST")
+                          input(name="id", value=producto._id, type="hidden")
+                          div.btn-group
+                            button.btn.btn-lg.btn-primary(type="submit") agregar al carrito
+            a(href="/")
+              button.btn.btn-link regresar
+          div.col-md-8
+            h4 
+              small DESCRIPCIÓN
+            h3 #{producto.descripcion}     
+      //- include perfil.html

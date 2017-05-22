@@ -1,0 +1,43 @@
+html
+    head
+      //- include bootstrap-css
+      include bootstrap-css
+      include custom-css
+      include tiendita-js
+      title HOME
+    body
+      div.jumbotron
+        div.container.text-center
+          h1.tiendita-h1-title-main Tiendita en línea
+          p Bienvenid@ #{usuario.nombre}
+      
+      nav.navbar.navbar-inverse
+        div.container-fluid
+          div.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li.active
+                a(href="javascript:void()") Productos
+              li
+                a(href="/notificaciones") Notificaciones
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href="/carrito") Carrito 
+                  span.glyphicon.glyphicon-shopping-cart
+              li
+                a(href="/perfil/" + usuario.nickname) Mi cuenta 
+                  span.glyphicon.glyphicon-user
+              li
+                a(href="/logout") Cerrar sesión 
+                  span.glyphicon.glyphicon-log-out
+      div.container
+        div.row
+          each producto in productos
+            div.col-sm-4.col-xs-12(style="cursor : pointer;" onclick="location.href='/detalle/producto/"+producto._id+"';")
+              div.panel.panel-default
+                div.panel-heading #{producto.nombre}
+                div.panel-body
+                  if producto.foto
+                    img.img-responsive(src="/public/images/products/"+producto.foto style="width:336px;height:280px;" alt="Image")
+                  else
+                    img.img-responsive(src="https://placehold.it/336x280?text=FOTO" style="width:336px;height:280px;" alt="Image")
+                div.panel-footer #{producto.descripcion}

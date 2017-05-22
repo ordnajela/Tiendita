@@ -1,0 +1,11 @@
+html
+head
+   title Transacciones
+   body
+      for transaccion in transacciones
+        p transaccion._id
+        p transaccion.fecha
+        p transaccion.total
+        form(action="/delete/transaccion", method="POST")
+          input(type="hidden", name="id", value=transaccion._id)
+          button(type="submit") BORRAR

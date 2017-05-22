@@ -1,0 +1,49 @@
+@font-face {
+    font-family: gidole-regular;
+    src: url("/bootstrap/fonts/gidole/Gidole-Regular.otf");
+}
+
+.tiendita-btn-black {
+	background-color: black;
+  border-color: black;
+	color: white;
+	font-family: gidole-regular;
+}
+.tiendita-btn-black:hover {
+	background-color: transparent;
+  color: black;
+}
+
+.tiendita-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.tiendita-h1-title-main {
+	font-family: gidole-regular;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 10px;
+}
+
+.tiendita-hide {
+	display: none;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.tiendita-loader {
+	border: 5px solid #f3f3f3;
+  border-radius: 50%;
+	border-top: 5px solid #4c4c4c;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}

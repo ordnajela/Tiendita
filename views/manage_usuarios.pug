@@ -1,0 +1,68 @@
+html
+head
+   title Usuarios
+   body
+      form(action="/insert/usuario", method="POST")
+        div
+           label(for="nickname") nickname:
+           input(name="nickname")
+        div
+           label(for="pass") pass:
+           input(name="pass")
+        div
+           label(for="nombre") nombre:
+           input(name="nombre")
+        div
+          label(for="direccion[ciudad]") ciudad:
+          input(name="direccion[ciudad]")
+        div
+         label(for="direccion[estado]") estado:
+         input(name="direccion[estado]")
+        div
+          label(for="direccion[pais]") pais:
+          input(name="direccion[pais]")
+        div
+          label(for="email") email:
+          input(name="email")
+        div
+          label(for="foto") foto:
+          input(name="foto")
+        br
+        button(type="submit") Nuevo usuario
+      br
+      br
+      br
+      for usuario in usuarios
+        br
+        div
+          p ID del usuario : #{usuario._id}
+        form(action="/update/usuario/"+usuario._id, method="POST")
+          div
+             label(for="nickname") nickname:
+             input(name="nickname", value=usuario.nickname)
+          div
+             label(for="pass") pass:
+             input(name="pass", value=usuario.pass)
+          div
+             label(for="nombre") nombre:
+             input(name="nombre", value=usuario.nombre)
+          div
+            label(for="direccion[ciudad]") ciudad:
+            input(name="direccion[ciudad]", value=usuario.direccion.ciudad)
+          div
+           label(for="direccion[estado]") estado:
+           input(name="direccion[estado]", value=usuario.direccion.estado)
+          div
+            label(for="direccion[pais]") pais:
+            input(name="direccion[pais]", value=usuario.direccion.pais)
+          div
+            label(for="email") email:
+            input(name="email", value=usuario.email)
+          div
+            label(for="foto") foto:
+            input(name="foto", value=usuario.foto)
+          br
+          button(type="submit") EDITAR
+        form(action="/delete/usuario", method="POST")
+          input(type="hidden", name="id", value=usuario._id)
+          button(type="submit") BORRAR

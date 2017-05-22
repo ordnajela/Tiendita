@@ -1,0 +1,39 @@
+html
+    head
+      //- include bootstrap-css
+      include bootstrap-css
+      include custom-css
+      include tiendita-js
+      title Carrito de compras
+    body
+      div.container
+        div.table-responsive
+          table.table
+            thead
+              th Producto
+              th Precio
+              th Descripción
+              th ¿Eliminar?
+            tbody
+              for producto in productos
+                tr
+                  td #{producto.nombre}
+                  td #{producto.precio}
+                  td #{producto.descripcion}
+                  td
+                    form(action="/elimnarcarrito", method="POST")
+                      input(type="hidden", name="id", value=producto._id)
+                      button.btn.btn-danger(type="submit") Eliminar
+              tr
+                td.mark total
+                td.mark #{total}
+                td
+                td
+      div.row
+        div.col-sm-2
+          a.btn.btn-link(href="/home") regresar
+        div.col-sm-8
+        div.col-sm-2
+          form(action="/comprarcarrito", method="POST")
+            input(type="hidden", name="productosStr", value=productosStr)
+            button.btn.btn-success(type="submit") Comprar

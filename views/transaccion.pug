@@ -1,0 +1,39 @@
+html
+    head
+      //- include bootstrap-css
+      include bootstrap-css
+      include custom-css
+      include tiendita-js
+      //- title #{usuario.nickname}
+    body
+      div.container-fluid
+        div.row.content
+          div.col-md-12.sidenav
+            div.row
+              div.col-md-12
+                div.well.well-sm
+                  div.row
+                    div.col-md-8
+                      a(href="/perfil/"+usuario.nickname) #{usuario.nombre}
+                      p.small fecha : #{transaccion.fecha}
+                      p.small total : #{transaccion.total}
+              a(href="/")
+                button.btn.btn-link regresar
+              h4 detalles
+              //- TODO:
+              div.container
+                div.col-md-4
+                  table
+                    div.table-responsive
+                      table.table
+                        thead
+                          th Producto
+                          th Nombre
+                          th Precio
+                        tbody
+                          for detalle in detalles
+                            tr
+                              td
+                                a(href="/detalle/producto/"+detalle.idProducto) ver
+                              td #{detalle.nombre}
+                              td #{detalle.precio}

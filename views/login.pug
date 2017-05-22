@@ -1,0 +1,21 @@
+html
+    head
+      include bootstrap-css
+      include custom-css
+      include tiendita-js
+      title TIENDITA - LOGIN
+    body
+      h1.tiendita-h1-title-main tiendita
+      form(action="/login?redirectedFrom=" + redirectedFrom method="POST")
+        div.col-md-4.col-md-offset-4
+          div.form-group.has-feedback
+            label.control-label Usuario
+            input.form-control(type="text", placeholder="Usuario", name="nick")
+            i.glyphicon.glyphicon-user.form-control-feedback
+          div.form-group.has-feedback    
+            label.control-label Contraseña
+            input.form-control(type="password", placeholder="Contraseña", name="pass")
+            i.glyphicon.glyphicon-eye-close.form-control-feedback
+          div.form-group.has-feedback.col-md-4.col-md-offset-4
+            button.btn.tiendita-btn-black(onclick="showElement('loading')") iniciar sesión
+            div.tiendita-centered.tiendita-loader.tiendita-hide#loading

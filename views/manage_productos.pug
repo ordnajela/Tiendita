@@ -1,0 +1,80 @@
+html
+head
+  title Productos
+  body
+    div
+      p INSERTAR PRODUCTO NUEVO
+    form(action="/insert/producto", method="POST")
+      div
+         label(for="nombre") nombre:
+         input(name="nombre")
+      br
+      div
+         label(for="descripcion") descripcion:
+         input(name="descripcion")
+      br
+      div
+         label(for="etiquetas") etiquetas:
+         input(name="etiquetas")
+      br
+      div
+         label(for="vendido") vendido:
+         input(type="checkbox", name="vendido")
+      div
+         label(for="foto") foto:
+         input(name="foto")
+      button(type="submit") Nuevo producto
+    br
+    div
+      p INSERTAR CATEGORÍA
+    form(action="/insert/categoria", method="POST")
+      div
+         label(for="nombre") nombre:
+         input(name="nombre")
+      button(type="submit") Nueva categoría
+    br
+    br
+    br
+    for producto in productos
+      br
+      div
+        p ID del producto : #{producto._id}
+      form(action="/update/producto/"+producto._id, method="POST")
+        div
+          label(for="nombre") nombre:
+          input(name="nombre", value=producto.nombre)
+        div
+          label(for="descripcion") descripcion:
+          input(name="descripcion", value=producto.descripcion)
+        div
+          label(for="etiquetas") etiquetas:
+          input(name="etiquetas", value=producto.etiquetas)
+        div
+          label(for="precio") precio:
+          input(name="precio", value=producto.precio)
+        div
+          label(for="vendido") vendido:
+          if producto.vendido==true
+            input(type="checkbox", name="vendido", checked="checked")
+          else
+            input(type="checkbox", name="vendido")
+        div
+          label(for="foto") foto:
+          input(name="foto", value=producto.foto)
+        div
+          label(for="idPropietario") propietario:
+          input(name="idPropietario", value=producto.idPropietario)
+        for propietario in propietarios
+          if propietario._id == producto.idPropietario
+            div
+              p propietario: #{propietario.nombre}
+        div
+          label(for="idCategoria") categoría:
+          select(name="idCategoria", autocomplete="off")
+            option(value="", selected="selected") NADA
+            for categoria in categorias
+              if categoria._id == producto.idCategoria
+                option(value=categoria._id, selected="selected") #{categoria.nombre}
+              else
+                option(value=categoria._id) #{categoria.nombre}
+        button(type="submit") EDITAR

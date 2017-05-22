@@ -1,0 +1,34 @@
+html
+    head
+      //- include bootstrap-css
+      include bootstrap-css
+      include custom-css
+      include tiendita-js
+      title Nuevo producto
+    body
+      div
+        p INSERTAR PRODUCTO NUEVO
+      form(action="/insert/producto?propietario=true", method="POST")
+        div
+           label(for="nombre") nombre:
+           input(name="nombre")
+        br
+        div
+           label(for="descripcion") descripcion:
+           input(name="descripcion")
+        br
+        div
+           label(for="etiquetas") etiquetas:
+           input(name="etiquetas")
+        br
+        div
+           label(for="precio") precio:
+           input(name="precio")
+        br
+        div
+          label(for="idCategoria") categoría:
+          select(name="idCategoria", autocomplete="off")
+           option(value="", selected="selected") NADA
+           for categoria in categorias
+             option(value=categoria._id) #{categoria.nombre}
+        button(type="submit") Nuevo producto
